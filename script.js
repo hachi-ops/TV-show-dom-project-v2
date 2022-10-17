@@ -12,8 +12,6 @@ function setup() {
 }
 
 function makePageForEpisodes(episodeList) {
-  // const searchCount = document.createElement("p");
-  // searchCount.className = "search-count";
   const allEpisodesContainer = document.getElementById("episodes");
   allEpisodesContainer.innerHTML = "";
 
