@@ -10,16 +10,16 @@ let currentEpisodes = [];
 function setup() {
   const allShows = getAllShows();
   makeSelectMenuForShows(allShows);
-  sendRequest(82).then((data) => {
+  sendRequest(527).then((data) => {
     // console.log(data);
     currentEpisodes = data;
     makePageForEpisodes(currentEpisodes);
     makeSelectMenuForEpisodes(currentEpisodes);
-
-    episodesSearch.addEventListener("keyup", searchEpisodes);
-    selectMenu.addEventListener("change", onChange);
-    showSelect.addEventListener("change", onChangeShow);
+    searchCount.innerHTML = `Displaying ${currentEpisodes.length} episode(s)`;
   });
+  episodesSearch.addEventListener("keyup", searchEpisodes);
+  selectMenu.addEventListener("change", onChange);
+  showSelect.addEventListener("change", onChangeShow);
 }
 
 function makeSelectMenuForShows(shows) {
@@ -135,8 +135,8 @@ function searchEpisodes(event) {
 
   const filteredCount = filteredEpisodes.length;
   const currentCount = currentEpisodes.length;
-  const countString = `Displaying ${filteredCount} / ${currentCount} episode(s)`;
-  searchCount.innerText = countString;
+  searchCount.innerHTML = `Displaying ${filteredCount} / ${currentCount} episode(s)`;
+
   makePageForEpisodes(filteredEpisodes);
 }
 
@@ -150,6 +150,7 @@ function onChange(event) {
       return e.id === Number(episodeId);
     });
     makePageForEpisodes(filteredEpisodes);
+    searchCount.innerHTML = "";
   }
 }
 
