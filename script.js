@@ -118,6 +118,7 @@ function onChange(event) {
       return e.id === Number(episodeId);
     });
     makePageForEpisodes(filteredEpisodes);
+    searchCount.innerHTML = "";
   }
 }
 
