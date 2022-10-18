@@ -1,4 +1,5 @@
 const episodesSearch = document.getElementById("episodes-search");
+
 const searchCount = document.getElementById("search-count");
 searchCount.className = "search-count";
 const selectMenu = document.getElementById("select-input");
@@ -8,11 +9,10 @@ let currentEpisodes = [];
 //You can edit ALL of the code here
 function setup() {
   sendRequest(82).then((data) => {
-    // console.log(data);
     currentEpisodes = data;
     makePageForEpisodes(currentEpisodes);
     makeSelectMenuForEpisodes(currentEpisodes);
-
+    searchCount.innerHTML = `Displaying ${data.length} episode(s)`;
     episodesSearch.addEventListener("keyup", searchEpisodes);
     selectMenu.addEventListener("change", onChange);
   });
@@ -103,8 +103,8 @@ function searchEpisodes(event) {
 
   const filteredCount = filteredEpisodes.length;
   const currentCount = currentEpisodes.length;
-  const countString = `Displaying ${filteredCount} / ${currentCount} episode(s)`;
-  searchCount.innerText = countString;
+  searchCount.innerHTML = `Displaying ${filteredCount} / ${currentCount} episode(s)`;
+
   makePageForEpisodes(filteredEpisodes);
 }
 
